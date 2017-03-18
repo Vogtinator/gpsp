@@ -1,7 +1,7 @@
 .align 2
 
 .global main
-.global __crt0_savedsp
+.global not_crt0_savedsp
 
 main:
 	push {r4-r11,lr}
@@ -15,7 +15,9 @@ main:
 	b real_main
 	
 1:
-	.long __crt0_savedsp
+	.long not_crt0_savedsp
+
+not_crt0_savedsp: .long 0
 	
 .global enableAlignmentExceptions
 
