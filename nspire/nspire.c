@@ -95,11 +95,6 @@ int warm_cache_op_range(int op, void *addr, unsigned long size)
 	return -1;
 }
 
-void time(time_t* result)
-{
-	*result = GetRTC();
-}
-
 unsigned months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 struct tm* localtime(const time_t* input_time)
@@ -156,16 +151,4 @@ struct tm* localtime(const time_t* input_time)
 		time -= months[tm_result.tm_mon++];
 	tm_result.tm_mday = time + 1;
 	return &tm_result;
-}
-
-int strcasecmp(const char* s1, const char* s2)
-{
-	int diff;
-	while(*s2)
-	{
-		diff = (unsigned char)tolower(*s1++) - (unsigned char)tolower(*s2++);
-		if(diff)
-			return diff;
-	}
-	return (unsigned char)*s1;
 }

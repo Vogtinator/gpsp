@@ -18,16 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifdef NSPIRE_BUILD
-typedef unsigned char Bytef;
-#define alloc_func zlib_alloc_func
-#define free_func zlib_free_func
-#define inflateInit2(streamPtr, windowBits) \
-  inflateInit2_(streamPtr, windowBits, zlibVersion(), sizeof(*(streamPtr)))
-#define MAX_WBITS 15
-#else
 #include <zlib.h>
-#endif
 #include "common.h"
 
 #define ZIP_BUFFER_SIZE (128 * 1024)

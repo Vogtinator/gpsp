@@ -16,7 +16,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef NSPIRE_BUILD
 #ifndef _WIN32_WCE
 
 #include <sys/stat.h>
@@ -26,9 +25,8 @@
 
 #endif
 
-#ifndef GP2X_BUILD
+#if !defined(GP2X_BUILD) && !defined(NSPIRE_BUILD)
 #include "gp2x/cpuctrl.h"
-#endif
 #endif
 
 #include "common.h"

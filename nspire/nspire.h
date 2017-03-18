@@ -19,28 +19,11 @@ void update_at_vblank();
 int warm_cache_op_range(int op, void *addr, unsigned long size);
 void clean_dcache();
 
-struct tm
-{
-	int tm_sec;
-	int tm_min;
-	int tm_hour;
-	int tm_mday;
-	int tm_mon;
-	int tm_year;
-	int tm_wday;
-	int tm_yday;
-	int tm_isdst;
-};
-
-void time(time_t*);
-
 struct tm* localtime(const time_t*);
 
 void upscale_aspect(u16 *dst, u16 *src);
 void upscale_aspect_fast(u16 *dst, u16 *src);
 void upscale_aspect_raw(u16 *dst, u16 *src);
-
-int strcasecmp(const char* s1, const char* s2);
 
 void enableAlignmentExceptions();
 u32 menu_wrapper(u16*);

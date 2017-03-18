@@ -28,8 +28,8 @@
 
 #ifdef NSPIRE_BUILD
   #include <os.h>
-  #include <common.h>
-#else
+#endif /* NSPIRE_BUILD */
+
 #ifdef _WIN32_WCE
   #include <windows.h>
 #else
@@ -43,7 +43,6 @@
   #include <time.h>
   #include <sys/time.h>
 #endif /* _WIN32_WCE */
-#endif /* NSPIRE_BUILD */
 
 #ifdef GIZ_BUILD
   #include "giz/giz.h"
