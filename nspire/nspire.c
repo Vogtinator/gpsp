@@ -1,29 +1,23 @@
 #include "../common.h"
 
+#include <libndls.h>
+
 u16 extra_screen_1[320*240] __attribute__ ((aligned (8)));
 u16 extra_screen_2[320*240] __attribute__ ((aligned (8)));
-u16 extra_screen_3[320*240] __attribute__ ((aligned (8)));
-u16 extra_screen_4[320*240] __attribute__ ((aligned (8)));
 
 void* nspire_displayed_screen;
 void* nspire_screen;
-void* nspire_screen_2;
-void* nspire_screen_3;
-u16* os_screen;
 u32 LCDTiming0;
 u32 LCDTiming1;
 u32 LCDControl;
 
 void nspire_init()
 {
-	os_screen = (u16*)*(volatile u32*)0xC0000010;
 	LCDTiming0 = *(volatile u32*)0xC0000000;
 	LCDTiming1 = *(volatile u32*)0xC0000004;
 	LCDControl = *(volatile u32*)0xC0000018;
 	nspire_displayed_screen = extra_screen_1;
 	nspire_screen = extra_screen_2;
-	nspire_screen_2 = extra_screen_3;
-	nspire_screen_3 = extra_screen_4;
 	*(volatile u32*)0xC0000018 = 0;
 	*(volatile u32*)0xC0000000 = 0x251A004C;
 	*(volatile u32*)0xC0000004 = 0x110300EF;
@@ -31,12 +25,13 @@ void nspire_init()
 	u32 newControl = (LCDControl & ~0x90E) | 0x008;
 	*(volatile u32*)0xC0000018 = newControl;
 	*(volatile u32*)0xC0000018 = newControl | 0x800;
+	lcd_init(SCR_320x240_555);
 }
 
 void nspire_restore()
 {
+	lcd_init(SCR_TYPE_INVALID);
 	*(volatile u32*)0xC0000018 = 0;
-	set_display_buffer(os_screen);
 	*(volatile u32*)0xC0000000 = LCDTiming0;
 	*(volatile u32*)0xC0000004 = LCDTiming1;
 	*(volatile u32*)0xC0000018 = LCDControl & ~0x800;
@@ -47,7 +42,7 @@ void nspire_restore()
 
 void set_display_buffer(void* buffer)
 {
-	*(volatile void**)0xC0000010 = buffer;
+	lcd_blit(buffer, SCR_320x240_555);
 }
 
 void update_at_vblank()

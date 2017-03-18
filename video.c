@@ -3453,12 +3453,10 @@ void flip_screen()
 	clean_dcache();
 	//while((*(unsigned volatile*)0xC0000020 & 4) == 0) { }
 	//*(unsigned volatile*)0xC0000028 = 4;
-	//set_display_buffer(nspire_screen);
+	set_display_buffer(nspire_screen);
 	void* temp = nspire_displayed_screen;
 	nspire_displayed_screen = nspire_screen;
-	nspire_screen = nspire_screen_2;
-	nspire_screen_2 = nspire_screen_3;
-	nspire_screen_3 = temp;
+	nspire_screen = temp;
 	screen_pixels = (u16 *)nspire_screen + screen_offset;
 }
 

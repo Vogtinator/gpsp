@@ -6,11 +6,8 @@
 #define WOP_D_CLEAN 0
 #define WOP_I_INVALIDATE 1
 
-extern void* nspire_screen;
-extern void* nspire_screen_2;
-extern void* nspire_screen_3;
 extern void* nspire_displayed_screen;
-extern u16* os_screen;
+extern void* nspire_screen;
 void nspire_init();
 void nspire_restore();
 void set_display_buffer(void* buffer);
