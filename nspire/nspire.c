@@ -19,8 +19,11 @@ void nspire_init()
 	nspire_displayed_screen = extra_screen_1;
 	nspire_screen = extra_screen_2;
 	*(volatile u32*)0xC0000018 = 0;
-	*(volatile u32*)0xC0000000 = 0x251A004C;
-	*(volatile u32*)0xC0000004 = 0x110300EF;
+	if(lcd_type() == SCR_320x240_565)
+	{
+		*(volatile u32*)0xC0000000 = 0x251A004C;
+		*(volatile u32*)0xC0000004 = 0x110300EF;
+	}
 	set_display_buffer(nspire_displayed_screen);
 	u32 newControl = (LCDControl & ~0x90E) | 0x008;
 	*(volatile u32*)0xC0000018 = newControl;
