@@ -700,7 +700,7 @@ void update_keys()
 	new_keys[2] = ~current_keys[2];
 	new_keys[3] = ~current_keys[3];
 	
-	new_keys[0] &= (current_keys[0] = *(unsigned volatile*)0x900E0010 | (*(unsigned volatile*)0x900B0028 & 0x10 ? 0 : 0x200));
+	new_keys[0] &= (current_keys[0] = *(unsigned volatile*)0x900E0010 | (on_key_pressed() ? 0x200 : 0));
 	new_keys[1] &= (current_keys[1] = *(unsigned volatile*)0x900E0014);
 	new_keys[2] &= (current_keys[2] = *(unsigned volatile*)0x900E0018);
 	new_keys[3] &= (current_keys[3] = (*(unsigned volatile*)0x900E001C & TOUCHPAD_KEYS_MASK) | touchpad_pressed);
