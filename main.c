@@ -1150,7 +1150,7 @@ void get_ticks_us(u64 *ticks_return)
 #ifdef NSPIRE_BUILD
 void delay_us(u32 us_count)
 {
-	sleep(us_count / 1000);
+	msleep(us_count / 1000);
 }
 
 void get_ticks_us(u64 *ticks_return)
