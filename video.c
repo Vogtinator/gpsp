@@ -21,7 +21,7 @@
 #include "font.h"
 
 void expand_blend(u32 *screen_src_ptr, u16 *screen_dest_ptr,
-                  u32 start, u32 end)
+                  u32 start, u32 end);
 
 #ifdef PSP_BUILD
 
