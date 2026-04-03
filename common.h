@@ -28,6 +28,8 @@
 
 #ifdef NSPIRE_BUILD
   #include <os.h>
+  #include <strings.h>
+  #include <ctype.h>
 #endif /* NSPIRE_BUILD */
 
 #ifdef _WIN32_WCE

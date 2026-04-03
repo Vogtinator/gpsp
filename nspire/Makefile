@@ -34,4 +34,4 @@ gpsp_launcher.tns: gpsp_launcher.elf
 
 clean:
 	rm -f *.o *.elf
-	rm -f $(DISTDIR)/gpsp_resources.tns
+	rm -f $(DISTDIR)/gpsp_launcher.tns
