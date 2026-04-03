@@ -208,3 +208,7 @@ void init_cpu();
 void move_reg();
 
 #endif
+
+#ifdef NSPIRE_BUILD
+void set_cpu_mode(cpu_mode_type new_mode);
+#endif
